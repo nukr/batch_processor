@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+message Query {
+  bytes selector = 1;
+  bytes document = 2;
+}
+
+message Response {
+  int32 affected = 1;
+  string msg = 2;
+}
+
+service BatchService {
+  rpc Create (Query) returns (Response) {}
+  rpc Update (Query) returns (Response) {}
+  rpc Delete (Query) returns (Response) {}
+  rpc Get (Query) returns (stream Response) {}
+}
